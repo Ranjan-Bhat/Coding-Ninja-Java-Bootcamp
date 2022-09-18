@@ -1,0 +1,30 @@
+import java.util.*;
+public class Solution {
+
+	public static void reverseStack(Stack<Integer> input, Stack<Integer> extra) {
+		//Your code goes here
+        if(input.size() == 0 || input.size() == 1) return;
+
+         //if(input.size() == 0) return;
+        int top = input.pop();//top element of input stack we moved in top variable
+
+        //now we will use recursion to reverse remaining input stack values
+        reverseStack(input,extra);//will assume that this must have reverse remaining values
+
+        //now this reverse input we need to ist pop in extra stack
+        while(! input.isEmpty()){
+            extra.push(input.pop());
+        }
+
+        //now input is empty
+        //ist step is to move top value in input stack
+        input.push(top);
+        while(! extra.isEmpty()){
+            input.push(extra.pop());
+        }
+        
+        
+        
+        
+	}
+}

@@ -1,0 +1,36 @@
+import java.util.*;
+public class Solution {
+
+	public static int countBracketReversals(String input) {
+		//Your code goes here
+        //create one stack
+        if(input.length() % 2 == 1) return -1;
+        Stack<Character> s = new Stack<>();
+        for(int i=0;i<input.length();i++){
+            char c = input.charAt(i);
+            if(c == '}'){
+                if(!s.isEmpty() && s.peek() == '{') s.pop();
+                else s.push('}');
+                
+            } else{
+                s.push('{');
+            }
+        }
+        //now we have simplified the curly brackets in stack
+        //lets find the length of stack
+        int len = s.size();
+        int n = 0;//indicates the number of closing bracket
+        // while(! s.isEmpty()){
+        //     if(s.pop() == '}') n++;
+        // }
+        while(! s.isEmpty() && s.peek() == '{'){
+            s.pop(); n++;
+        }
+        //let us now take m which indicates number of opening bracket
+        // int m = len-n;//len = m+n
+        // return (int)(Math.ceil(m/2)+Math.ceil(n/2));
+        //return (len / 2 + n % 2);
+        return (int)(Math.ceil(n/2.0)+Math.ceil((len-n)/2.0));
+        }
+	}
+

@@ -1,0 +1,27 @@
+import java.util.*;
+public class Solution {
+
+	public static boolean checkRedundantBrackets(String expression) {
+		//Your code goes here
+        //ist create one stack and initialize one count variable having value 0 initially
+        Stack<Integer> stack = new Stack<>();
+        int count = 0;
+        for(int i=0;i<expression.length();i++){
+            int j = expression.charAt(i);
+            if(j != ')'){
+                stack.push(j);
+            } else{
+                while(stack.peek() != '('){
+                    stack.pop();
+                    count++;
+                }
+                stack.pop();
+                if(count<=1) return true;//it is redundant
+                count=0;
+                
+            }
+            
+        }
+        return false;
+	}
+}
